@@ -23,8 +23,8 @@ public class EatPeaches {
 
     /**
      * 二分查找-最小速度
-     * @param peaches
-     * @param h
+     * @param peaches 桃树数量
+     * @param h 守卫h小时后回来
      * @return
      */
     public static int minSpeedK(int[] peaches, int h){
@@ -34,8 +34,7 @@ public class EatPeaches {
         int leftK = 1, rightK = 1000000000;
         while (leftK <= rightK){
             int k = (leftK + rightK) / 2;
-            System.out.println("k: " + k + ", leftK: " + leftK + ", rightK: " + rightK);
-            if(eatPeaches(peaches, k, h)){
+            if(eatPeaches(peaches, h, k)){
                 rightK = k - 1;
             } else {
                 leftK = k + 1;
@@ -43,16 +42,12 @@ public class EatPeaches {
         }
         return leftK;
     }
-
-
     /**
      * 以速度k能否吃完全部桃子
-     * @param peaches
      * @param k 吃桃速度
-     * @param h 守卫h小时后回来
      * @return
      */
-    public static boolean eatPeaches(int[] peaches, int k, int h){
+    public static boolean eatPeaches(int[] peaches, int h, int k){
         int time = 0;
         for (int i = 0; i < peaches.length; i++){
             int t1 = peaches[i] / k;

@@ -10,7 +10,7 @@ import java.util.List;
 public class NaturalNum {
 
     public static void main(String[] args) {
-        int num = 29;
+        int num = 27;
         List<List<Integer>> list = etlList(num);
         System.out.println("整数:" + num + ", 可以表示为以下几种连续自然数之和：");
         list.forEach(item -> System.out.println(item));
@@ -35,29 +35,6 @@ public class NaturalNum {
         }
         return result;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public static List<List<Integer>> numExpression(int num){
         List<List<Integer>> list = new ArrayList<>();

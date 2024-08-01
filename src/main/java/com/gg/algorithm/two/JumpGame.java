@@ -39,12 +39,12 @@ public class JumpGame {
         if(left >= len){
             return Arrays.stream(nums).sum();
         }
-        int removeCount = 0; // 记录跳跃次数，每跳跃一次就移除一个幸存数
+        int jumpCount = 0; // 记录跳跃次数，每跳跃一次就移除一个幸存数
         int nextIndex = 1; // 记录下次跳跃的起始位置(移除位置)
         // 记录是否被移除,true移除,false幸存
         boolean[] flag = new boolean[len];
-        while(left != len-removeCount){
-            removeCount++;
+        while(left < len-jumpCount){
+            jumpCount++;
 
             while (flag[nextIndex]){ //跳过已经移除的
                 nextIndex++;

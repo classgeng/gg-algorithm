@@ -27,38 +27,36 @@ public class AcidCheck {
         qzList.add(1);
         qzList.add(2);
 
-        List<Integer> list = dfs(map);
-        list.removeAll(qzList);
-        System.out.println();
-        System.out.println("需要进行核酸检测的人数:"+list.size()+", 分别是："+list);
+        List<Integer> list = dfs(map, qzList);
+        System.out.println("\n需要进行核酸检测的人数:"+list.size()+", 分别是："+list);
 
-    }
-
-
-    public static List<Integer> dfs(int[][] map){
-        List<Integer> nums = new ArrayList<>();
-        boolean[] pass = new boolean[map.length];
-        for (int i=0; i<map.length; i++){
-            if(!pass[i]){
-                dfsDepth(nums,map,pass,i);
-            }
-        }
-        return nums;
     }
 
     /**
-     * 一排一排找
-     * @param map
-     * @param pass
-     * @param i
+     * 深搜
+     * @param map 人群
+     * @param qzList 确认人员编号
+     * @return
      */
-    private static void dfsDepth(List<Integer> nums, int[][] map, boolean[] pass, int i) {
+    public static List<Integer> dfs(int[][] map, List<Integer> qzList){
+        List<Integer> result = new ArrayList<>();
+        boolean[] pass = new boolean[map.length];
+        for (int i=0; i<map.length; i++){
+            if(!pass[i]){
+                dfsDepth(result,map,pass,i);
+            }
+        }
+        result.removeAll(qzList); // 移除已确诊人员编号
+        return result;
+    }
+    //一排一排找
+    private static void dfsDepth(List<Integer> result, int[][] map, boolean[] pass, int i) {
         System.out.print(i + " ");
-        nums.add(i);
+        result.add(i);
         pass[i] = true;
         for (int j=0; j<map.length; j++){
             if(!pass[j] && map[i][j] != 0){
-                dfsDepth(nums,map,pass,j);
+                dfsDepth(result,map,pass,j);
             }
         }
     }

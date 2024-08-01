@@ -1,4 +1,4 @@
-package com.gg.algorithm;
+package com.gg.algorithm.linked;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,19 +8,6 @@ import java.util.Set;
  */
 public class LinkedTable {
 
-
-    /**
-     * 单向链表节点属性
-     */
-    static class LinkedNode {
-        public LinkedNode(int value, LinkedNode next){
-            this.value = value;
-            this.next = next;
-        }
-        int value;
-        LinkedNode next;
-    }
-
     /**
      * 迭代，反转
      * @param currNode
@@ -29,26 +16,25 @@ public class LinkedTable {
     public static LinkedNode reversal(LinkedNode currNode){
         LinkedNode next,prev = null;
         while (currNode != null){
-            next = currNode.next;
-            currNode.next = prev;
+            next = currNode.getNext();
+            currNode.setNext(prev);
             prev = currNode;
             currNode = next;
         }
         return prev;
     }
-
     /**
      * 递归，反转
      * @param currNode
      * @return
      */
     public static LinkedNode recursion(LinkedNode currNode){
-        if(null == currNode || null == currNode.next){
+        if(null == currNode || null == currNode.getNext()){
             return currNode;
         }
-        LinkedNode prev = recursion(currNode.next);
-        currNode.next.next = currNode;
-        currNode.next = null;
+        LinkedNode prev = recursion(currNode.getNext());
+        currNode.getNext().setNext(currNode);
+        currNode.setNext(null);
         return prev;
     }
 
@@ -63,7 +49,7 @@ public class LinkedTable {
             if(!set.add(currNode)){
                 return true;
             }
-            currNode = currNode.next;
+            currNode = currNode.getNext();
         }
         return false;
     }
@@ -74,17 +60,17 @@ public class LinkedTable {
      * @return
      */
     public static boolean hasCycle1(LinkedNode currNode){
-        if(null == currNode || currNode.next == null){
+        if(null == currNode || currNode.getNext() == null){
             return false;
         }
         LinkedNode next1 = currNode;
-        LinkedNode next2 = currNode.next;
+        LinkedNode next2 = currNode.getNext();
         while (next1 != next2){
-            if(next2 == null || next2.next == null){
+            if(next2 == null || next2.getNext() == null){
                 return false;
             }
-            next1 = next1.next;
-            next2 = next2.next.next;
+            next1 = next1.getNext();
+            next2 = next2.getNext().getNext();
         }
         return true;
     }
@@ -105,7 +91,7 @@ public class LinkedTable {
             prev = prev.next;
         }*/
 
-        //node5.next = node3;
+        node5.setNext(node3);
         System.out.println(hasCycle1(node1));
 
 

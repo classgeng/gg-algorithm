@@ -1,7 +1,6 @@
 package com.gg.algorithm;
 
-import com.demo.common.domain.Status;
-
+import com.gg.domain.Status;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

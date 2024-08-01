@@ -41,7 +41,7 @@ public class ShootBasket {
                     queue.poll();
                     popOrder.append("L");
                     index++;
-                } else if(!queue.isEmpty() && queue.peekLast() == popList[index]){
+                } else if(queue.peekLast() == popList[index]){
                     // 右边取出
                     queue.pollLast();
                     popOrder.append("R");
@@ -56,7 +56,6 @@ public class ShootBasket {
         } else {
             System.out.println("NO");
         }
-
     }
 
 }

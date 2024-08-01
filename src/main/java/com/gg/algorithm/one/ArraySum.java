@@ -22,13 +22,14 @@ import java.util.stream.IntStream;
 public class ArraySum {
 
     public static void main(String[] args) {
-        int[] arr = {10, 7, 8, 9, 1, 5, 2, 4, 6, 3, 5, 6};
+        int[] arr = {30, 20, 7, 8, 9, 1, 5, 2, 4, 6,7, 6, 8, 0,0,3, 5, 6};
 
         dubbleOrder(arr);
         System.out.println("selection sort: " + Arrays.toString(arr));
 
 
-        System.out.println("selection quchong3: " + quchong3(arr));
+
+        System.out.println("selection quchong4: " + Arrays.toString(quchong4(arr)));
 
         int total = sumMin(5, arr) + sumMax(5, arr);
         System.out.println("total1: " + total);
@@ -194,5 +195,22 @@ public class ArraySum {
         return index+1;
     }
 
+
+    /**
+     * 另外开辟空间去重
+     * @param arr
+     * @return
+     */
+    public static int[] quchong4(int[] arr){
+        int len = arr.length;
+        int newLen = arr[0] == 0 ? arr[len-1]+1 : arr[len-1]; //获取新数组长度
+        int[] aa = new int[newLen];
+        for (int i = 0; i < len; i++) {
+            aa[arr[i]] = arr[i];
+        }
+        //去重操作
+        int[] bb = IntStream.of(aa).distinct().toArray();
+        return bb;
+    }
 
 }
